@@ -36,7 +36,7 @@ class ShannonFano
         	sum += v
       	end
 
-		puts maxProb, col_1, col_2, "\n"
+		#puts maxProb, col_1, col_2, "\n"
 
       	return col_1, col_2
     end 
@@ -72,6 +72,15 @@ class ShannonFano
       	return codeTable
     end
 
+    def encodedHash(hash, codeTable)
+    	encodedString = ""
+    	@file.each_char do |char| 
+    		encodedString += codeTable[char]
+    	end
+
+    	return encodedString
+    end
+
 	def encode(userFile)
 		@code = Hash.new
 		@file = userFile
@@ -79,16 +88,20 @@ class ShannonFano
 		@probabilities = probabilities()
 
 		@code = code_table(@probabilities, @code)
+		@encoded = encodedHash(@file, @code)
 
-		@code.each do |key, value|
-      		puts "code", key, value
-      	end		
+		return @code, @encoded
+
+		#@code.each do |key, value|
+      	#	puts "code", key, value
+      	#end		
 	end 
 
 end
 
 SF = ShannonFano.new
-SF.encode("AAAAAABBBBBCCCCDDDEEF")
+codeTable, encodedString = SF.encode("AAAAAABBBBBCCCCDDDEEF")
+puts  codeTable, encodedString
 
 
 
