@@ -97,11 +97,28 @@ class ShannonFano
       	#end		
 	end 
 
+	def decode(encodedFile, codeTable)
+		codeTable = codeTable.invert
+		decoded = ""
+		substring = ""
+		encodedFile.each_char do |char| 
+			substring += char
+			if (!codeTable[substring].nil?)
+				decoded += codeTable[substring]
+				substring = ""
+			end
+
+		end
+		return decoded
+	end
 end
 
 SF = ShannonFano.new
 codeTable, encodedString = SF.encode("AAAAAABBBBBCCCCDDDEEF")
+#codeTable, encodedString = SF.encode("ABCDE")
 puts  codeTable, encodedString
+
+puts SF.decode(encodedString, codeTable)
 
 
 
