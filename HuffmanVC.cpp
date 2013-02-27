@@ -1,3 +1,5 @@
+//Original HuffmanCode: http://code.activestate.com/recipes/577480-huffman-data-compression/
+//Modified to use multiple Huffman trees based on the previous character type (vowel, consonant, special) 
 #include<iostream>
 #include<fstream>
 #include<string>
