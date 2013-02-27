@@ -843,7 +843,7 @@ int main( int argc, char * argv[] )
 {
     string in_name;
     string out_name;
-    bool encode = false;
+    bool encode = true;
 	bool verbose = false;
 
     for ( int i = 1 ; i < argc ; ++i )
